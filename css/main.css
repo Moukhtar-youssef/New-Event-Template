@@ -134,6 +134,7 @@ ul {
     position: fixed;
     left: 0;
     width: 100vw;
+    max-width:100vw;
     z-index: 2;
     transition: var(--main-transition-timing);
     -webkit-transition: var(--main-transition-timing);
@@ -185,6 +186,7 @@ ul {
 .header .menu{
     display: none;
     width: 100vw;
+    max-width:100vw;
     height: 100%;
 }
 .header .menu .icons{
