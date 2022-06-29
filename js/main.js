@@ -50,4 +50,78 @@ window.addEventListener("scroll" , ()=>{
         scroll_to_top.style.cssText = "display:none;"
     }
 })
-    
+// changing the button you click on in the filter section
+let buttons = document.querySelectorAll('#flt_btn');
+let buttonsArray = Array.from(buttons);
+buttonsArray.forEach((buttons) =>{
+    buttons.addEventListener("click", ()=>{
+        buttonsArray.forEach((buttons) =>{
+            buttons.classList.remove("active")
+        })
+        buttons.classList.add("active")
+        filterFunction(buttons);
+    })
+})
+buttonsArray.forEach((buttons) => {
+    buttons.addEventListener("click", function (e) {
+        if (e.target.tagName === "a") {
+        buttons.classList.add("active");
+        filterFunction(buttons);
+    } else {
+        filterFunction(buttons);
+    }
+});
+});
+let cards = document.querySelectorAll('#card');
+let cards_array = Array.from(cards);
+function filterFunction (buttons) {
+    cards_array.forEach((cards) => {
+        if (cards.dataset.category === buttons.dataset.filter) {
+            cards.style.cssText = "display:flex;";
+        } else {
+            cards.style.cssText = `display:none;`;
+        }
+    });
+};
+// unfolding the question card
+let foldables = document.querySelectorAll('.foldablecard');
+let content = document.querySelectorAll('.qus-content');
+foldables.forEach((foldablecard) =>{
+    foldablecard.addEventListener("click", ()=>{
+        foldablecard.classList.toggle("active");
+    })
+})
+let indecation = document.querySelectorAll(' .indecation');
+indecation.forEach((indecation) =>{
+    indecation.parentElement.addEventListener("click", ()=>{
+    if(indecation.innerHTML == "+"){
+        indecation.innerHTML = "-"
+    }
+    else{
+        indecation.innerHTML = "+"
+    }
+    })
+})
+// animation function
+function animate(parent, ...childs) {
+window.addEventListener("scroll",  () => {
+    if (window.scrollY >= parent.offsetTop - 100) {
+        childs.forEach((element) => {
+            let childarray = Array.from(element);
+            if (childarray.length === 0) {
+                element.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);";
+            } else {
+                childarray.forEach((e) => {
+                    e.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);";
+            });
+            }
+        });
+        }
+    });
+
+}
+// overview section animation 
+let overview = document.querySelector('.overview')
+let left_section = document.querySelector('.overview .first-part .left-section')
+let right_section = document.querySelector('.overview .first-part .right-section')
+animate( overview,left_section,right_section)
