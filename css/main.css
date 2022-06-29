@@ -89,6 +89,7 @@ ul {
     -moz-transition: var(--main-transition-timing);
     -ms-transition: var(--main-transition-timing);
     -o-transition: var(--main-transition-timing);
+    z-index:99;
 }
 .scroll-to-top a{
     text-decoration: none;
@@ -1074,7 +1075,7 @@ footer ul{
     margin-top: 30px;
 }
 footer ul li{
-    margin-left: 40px;
+    margin-left: 30px;
 }
 footer ul li a{
     background-color: none;
