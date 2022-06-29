@@ -13,6 +13,47 @@ window.addEventListener("scroll",() =>
     }
 }
 )
+//changing the color of the link according to the position
+let sections = document.querySelectorAll("section");
+let links = document.querySelectorAll(".navbar ul li a");
+let menu_links = document.querySelectorAll(".menu ul li a")
+window.addEventListener("scroll",()=>{
+    let user_position = document.documentElement.scrollTop;
+    sections.forEach((section)=>{
+        if(
+            user_position >= section.offsetTop - 50
+            &&
+            user_position <= section.offsetHeight + section.offsetTop
+        ){
+            links.forEach((link)=>{
+                if(section.id === link.textContent.toLocaleLowerCase()){
+                    removeactive(links);
+                    setactive(link)
+                }
+            })
+            menu_links.forEach((link)=>{
+                if(section.id === link.textContent.toLocaleLowerCase()){
+                    removeactive(menu_links)
+                    setactive(link)
+                }
+            })
+        }
+    })
+})
+function removeactive(links){
+    links.forEach((element)=>{
+        element.classList.remove("active");
+    })
+}
+function setactive(link){
+    link.classList.add("active")
+}
+//activating the menu when clicked on icons
+let icons = document.getElementById("icons")
+let ul = document.getElementById("menu-ul")
+icons.addEventListener("click", ()=>{
+    ul.classList.toggle("show");
+})
 // add increasing number when up to specefic offset
 let section = document.getElementById('event-second');
 let nums = document.querySelectorAll('.nums .num');
@@ -34,12 +75,6 @@ function startcount(ele){
     }
     },2000/goal)
 }
-//activating the menu when clicked on icons
-let icons = document.getElementById("icons")
-let ul = document.getElementById("menu-ul")
-icons.addEventListener("click", ()=>{
-    ul.classList.toggle("show");
-})
 //activating scroll to top
 let scroll_to_top = document.getElementById("scroll-to-top");
 window.addEventListener("scroll" , ()=>{
@@ -109,10 +144,10 @@ window.addEventListener("scroll",  () => {
         childs.forEach((element) => {
             let childarray = Array.from(element);
             if (childarray.length === 0) {
-                element.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);";
+                element.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);transform: scale(1);-webkit-transform: scale(1);-moz-transform: scale(1);-ms-transform: scale(1);-o-transform: scale(1);";
             } else {
                 childarray.forEach((e) => {
-                    e.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);";
+                    e.style.cssText = "opacity:1;transform:translate(0,0);-webkit-transform:translate(0,0));-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);transform: scale(1);-webkit-transform: scale(1);-moz-transform: scale(1);-ms-transform: scale(1);-o-transform: scale(1);";
             });
             }
         });
@@ -120,9 +155,39 @@ window.addEventListener("scroll",  () => {
     });
 
 }
-// overview section animation 
+// adding animation to all the website
 let overview = document.querySelector('.overview');
 let left_section = document.querySelector('.overview .first-part .left-section');
 let right_section = document.querySelector('.overview .first-part .right-section');
-let participants = document.querySelector('.overview .second-part');
-animate( overview,left_section,right_section,participants)
+let second_part = document.querySelector('.overview .second-part');
+let third_part_left_section = document.querySelector(".overview .third-part .container .left-section");
+let third_part_right_section = document.querySelector(".overview .third-part .container .right-section");
+animate( overview,left_section,right_section,second_part,third_part_left_section,third_part_right_section);
+let speakers = document.querySelector('.speakers');
+let speakers_header = document.querySelector('.speakers .heading')
+let slide = document.querySelector(".speakers .slider");
+animate(speakers,slide, speakers_header);
+let programs = document.querySelector('.programs');
+let programs_header = document.querySelector('.programs .heading');
+let filter_btn = document.querySelector('.programs .filter-btn');
+let filter_content = document.querySelector('.programs .filter-content');
+animate(programs,programs_header,filter_btn,filter_content);
+let register = document.querySelector('.register');
+let register_content = document.querySelector('.register .content');
+animate(register,register_content);
+let question = document.querySelector('.question');
+let question_header = document.querySelector('.question .heading');
+let question_cards = document.querySelector('.question .cards');
+animate(question,question_header,question_cards);
+let venue = document.querySelector('.venue');
+let venue_header = document.querySelector('.venue .heading');
+let venue_content = document.querySelector('.venue .content');
+animate(venue,venue_header,venue_content);
+let sponsors = document.querySelector('.sponsors');
+let sponsors_header = document.querySelector('.sponsors .heading');
+let sponsors_cards = document.querySelector('.sponsors .names');
+animate(sponsors,sponsors_cards,sponsors_header);
+let contact = document.querySelector('.contact');
+let contact_content = document.querySelector('.contact .content');
+animate(contact,contact_content)
+
