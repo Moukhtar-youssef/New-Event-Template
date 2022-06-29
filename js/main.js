@@ -103,7 +103,7 @@ indecation.forEach((indecation) =>{
     })
 })
 // animation function
-function animate(parent, ...childs) {
+function animate(parent, ...childs){
 window.addEventListener("scroll",  () => {
     if (window.scrollY >= parent.offsetTop - 100) {
         childs.forEach((element) => {
@@ -121,7 +121,8 @@ window.addEventListener("scroll",  () => {
 
 }
 // overview section animation 
-let overview = document.querySelector('.overview')
-let left_section = document.querySelector('.overview .first-part .left-section')
-let right_section = document.querySelector('.overview .first-part .right-section')
-animate( overview,left_section,right_section)
+let overview = document.querySelector('.overview');
+let left_section = document.querySelector('.overview .first-part .left-section');
+let right_section = document.querySelector('.overview .first-part .right-section');
+let participants = document.querySelector('.overview .second-part');
+animate( overview,left_section,right_section,participants)
